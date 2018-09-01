@@ -11500,28 +11500,30 @@
     ]
   },
   "packageFolders": {
-    "/home/petrel/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\HSZC1701-0003\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/petrel/Documents/Core/AT-Core/AT-Core.csproj",
+      "projectUniqueName": "D:\\Apps\\Core\\AT-Core\\AT-Core.csproj",
       "projectName": "AT-Core",
-      "projectPath": "/home/petrel/Documents/Core/AT-Core/AT-Core.csproj",
-      "packagesPath": "/home/petrel/.nuget/packages/",
-      "outputPath": "/home/petrel/Documents/Core/AT-Core/obj/",
+      "projectPath": "D:\\Apps\\Core\\AT-Core\\AT-Core.csproj",
+      "packagesPath": "C:\\Users\\HSZC1701-0003\\.nuget\\packages\\",
+      "outputPath": "D:\\Apps\\Core\\AT-Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/petrel/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\HSZC1701-0003\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
