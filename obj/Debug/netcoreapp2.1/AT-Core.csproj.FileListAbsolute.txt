@@ -1,0 +1,14 @@
+/home/petrel/Documents/Core/AT-Core/bin/Debug/netcoreapp2.1/AT-Core.deps.json
+/home/petrel/Documents/Core/AT-Core/bin/Debug/netcoreapp2.1/AT-Core.runtimeconfig.json
+/home/petrel/Documents/Core/AT-Core/bin/Debug/netcoreapp2.1/AT-Core.runtimeconfig.dev.json
+/home/petrel/Documents/Core/AT-Core/bin/Debug/netcoreapp2.1/AT-Core.dll
+/home/petrel/Documents/Core/AT-Core/bin/Debug/netcoreapp2.1/AT-Core.pdb
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.csprojAssemblyReference.cache
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.csproj.CoreCompileInputs.cache
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.RazorAssemblyInfo.cache
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.RazorAssemblyInfo.cs
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.AssemblyInfoInputs.cache
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.AssemblyInfo.cs
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.RazorTargetAssemblyInfo.cache
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.dll
+/home/petrel/Documents/Core/AT-Core/obj/Debug/netcoreapp2.1/AT-Core.pdb
