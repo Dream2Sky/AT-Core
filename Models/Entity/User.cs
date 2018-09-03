@@ -6,7 +6,7 @@ namespace AT_Core.Models.Entity
         /// department id
         /// </summary>
         /// <value></value>
-        public long DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
     }

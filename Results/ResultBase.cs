@@ -4,6 +4,11 @@ namespace AT_Core.Results
 {
     public class ResultBase<T>
     {
+        public ResultBase()
+            :this(default(T))
+        {
+            
+        }
         public ResultBase(T data)
         {
             Success = true;

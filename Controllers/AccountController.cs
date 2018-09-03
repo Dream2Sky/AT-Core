@@ -1,3 +1,4 @@
+using AT_Core.Attributes;
 using AT_Core.Models;
 using AT_Core.Models.ViewModels;
 using AT_Core.Results;
@@ -16,14 +17,17 @@ namespace AT_Core.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ResultBase<LoginResult>> Login(LoginModel loginModel)
+        [NoAuth]
+        public ResultBase<LoginResult> Login(LoginModel loginModel)
         {
+            
             return new ResultBase<LoginResult>(new LoginResult() { IsAdmin = false, LoginState = true });
         }
 
 
         [HttpPost]
-        public ActionResult<ResultBase<bool>> Logout()
+        [NoAuth]
+        public ResultBase<bool> Logout()
         {
             return new ResultBase<bool>(true);
         }

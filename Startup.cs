@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AT_Core.Filters;
 using AT_Core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +28,13 @@ namespace AT_Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ATDbContext>(n=>n.UseInMemoryDatabase("AutoTest"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<ATDbContext>(opt=>opt.UseMySql(Configuration.GetConnectionString("ATDbConnectionString")));
+            services.AddMvc(n =>
+            {
+                n.Filters.Add<AuthFilter>();
+                n.Filters.Add<ATExceptionFilter>();
+                n.Filters.Add<ATActionFilter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +48,6 @@ namespace AT_Core
             {
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseMvc();
         }

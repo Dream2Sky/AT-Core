@@ -8,7 +8,7 @@ namespace AT_Core.Models.Entity
         /// Entity Id
         /// </summary>
         /// <value></value>
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Is Disable

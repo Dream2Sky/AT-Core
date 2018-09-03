@@ -6,7 +6,9 @@ namespace AT_Core.Common
         {
             LoginSuccess = 100,
             LoginFaild = 101,
-
+            NoLogin = 102,
+            InvaildInput = 201,
+            UnKnowException = 9999
         }
     }
 
