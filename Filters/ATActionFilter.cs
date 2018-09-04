@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AT_Core.Filters
 {
-    public class ATActionFilter : IActionFilter
+    public class ATActionFilter :Attribute, IActionFilter
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {

@@ -31,9 +31,9 @@ namespace AT_Core
             services.AddDbContext<ATDbContext>(opt=>opt.UseMySql(Configuration.GetConnectionString("ATDbConnectionString")));
             services.AddMvc(n =>
             {
+                n.Filters.Add<ATActionFilter>();
                 n.Filters.Add<AuthFilter>();
                 n.Filters.Add<ATExceptionFilter>();
-                n.Filters.Add<ATActionFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

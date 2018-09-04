@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AT_Core.Models.Entity
 {
@@ -8,6 +9,7 @@ namespace AT_Core.Models.Entity
         /// Entity Id
         /// </summary>
         /// <value></value>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
