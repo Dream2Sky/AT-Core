@@ -3,14 +3,16 @@ using System;
 using AT_Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ATCore.Migrations
 {
     [DbContext(typeof(ATDbContext))]
-    partial class ATDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180907195533_Add_Departments")]
+    partial class Add_Departments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

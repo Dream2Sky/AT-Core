@@ -5,6 +5,10 @@ namespace AT_Core.Models.Entity
 {
     public class EntityBase
     {
+        public EntityBase()
+        {
+            CreateTime = DateTime.Now;
+        }
         /// <summary>
         /// Entity Id
         /// </summary>

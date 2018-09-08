@@ -8,6 +8,7 @@ namespace AT_Core.Common
             LoginFaild = 101,
             NoLogin = 102,
             InvaildInput = 201,
+            ObjectIsExist = 301,
             UnKnowException = 9999
         }
     }

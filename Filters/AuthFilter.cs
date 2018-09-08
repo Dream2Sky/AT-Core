@@ -4,7 +4,9 @@ using AT_Core.Common;
 using AT_Core.Controllers;
 using AT_Core.Exceptions;
 using AT_Core.Models;
+using AT_Core.Results;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AT_Core.Filters
@@ -21,7 +23,12 @@ namespace AT_Core.Filters
 
             if (string.IsNullOrWhiteSpace(context.HttpContext.Session.GetString(ATConst.AuthUserSessionKey)))
             {
-                throw new ATException(ATEnums.ErrCode.NoLogin, "login state is invaild,please login!");
+                var result = new ResultWrapper<object>();
+                var code = ATEnums.ErrCode.NoLogin;
+                var msg = ATEnums.ErrCode.NoLogin.ToString();
+                
+                result.SetMsg(code, msg);
+                context.Result = new JsonResult(result);
             }
         }
     }

@@ -12,7 +12,7 @@ namespace AT_Core.Filters
         {
             if (context.ExceptionHandled == false)
             {
-                var result = new ResultBase<object>();
+                var result = new ResultWrapper<object>();
                 var code = ATEnums.ErrCode.UnKnowException;
                 var msg = ATEnums.ErrCode.UnKnowException.ToString();
 

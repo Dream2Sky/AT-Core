@@ -2,14 +2,14 @@ using AT_Core.Common;
 
 namespace AT_Core.Results
 {
-    public class ResultBase<T>
+    public class ResultWrapper<T>
     {
-        public ResultBase()
+        public ResultWrapper()
             :this(default(T))
         {
             
         }
-        public ResultBase(T data)
+        public ResultWrapper(T data)
         {
             Success = true;
             Code = ATEnums.ErrCode.LoginSuccess;

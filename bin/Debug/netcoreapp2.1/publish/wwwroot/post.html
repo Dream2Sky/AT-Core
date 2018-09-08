@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery.js"></script>
+    <script>
+        $("input[name='submitBtn']").click(function(){
+            $.ajax({
+                url: $("input[name='url']").text(),
+                type: "POST",
+                data:$("textarea[name='reqData']").text(),
+                success:function(data){
+                    $("textarea[name='respData']").html(data);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <input type="text" name="url">
+    <textarea name="reqData" id="" cols="30" rows="10"></textarea>
+    <input type="button" name="submitBtn" value="submit">
+    <textarea name="respData" id="" cols="30" rows="10"></textarea>
+</body>
+</html>

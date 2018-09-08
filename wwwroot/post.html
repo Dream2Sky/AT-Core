@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <input type="text" name="login_url" value="https://localhost:5001/api/Account/Login">
+    <textarea name="loginInfo" id="" cols="30" rows="10">
+        {
+            "UserName":"Admin",
+            "Password":"888888"
+        }
+    </textarea>
+    <input type="button" name="loginBtn" value="login">
+    <textarea name="loginResponse" id="" cols="30" rows="10"></textarea>
+    <hr/>
+    <input type="text" name="url">
+    <textarea name="reqData" id="" cols="30" rows="10">
+    </textarea>
+    <input type="button" name="submitBtn" value="submit">
+    <textarea name="respData" id="" cols="30" rows="10"></textarea>
+    <script>
+            $("input[name='loginBtn']").click(function(){
+                $.ajax({
+                    url: $("input[name='login_url']").val(),
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data:$("textarea[name='loginInfo']").val(),
+                    success:function(data){
+                        JSON.stringify($("textarea[name='loginResponse']").val(data));
+                    }
+                });
+            })
+
+            $("input[name='submitBtn']").click(function(){
+                $.ajax({
+                    url: $("input[name='url']").val(),
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data:$("textarea[name='reqData']").val(),
+                    success:function(data){
+                        JSON.stringify($("textarea[name='respData']").val(data));
+                    }
+                });
+            })
+    </script>
+</body>
+</html>
