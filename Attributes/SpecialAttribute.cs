@@ -6,4 +6,9 @@ namespace AT_Core.Attributes
     {
         
     }
+
+    public class AdminAttribute:ActionFilterAttribute
+    {
+        
+    }
 }

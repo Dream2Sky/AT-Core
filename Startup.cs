@@ -10,6 +10,7 @@ using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,7 @@ namespace AT_Core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ATDbContext>(opt=>opt.UseMySql(Configuration.GetConnectionString("ATDbConnectionString")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
             services.AddLogging();
             services.AddMvc(n =>

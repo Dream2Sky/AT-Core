@@ -7,39 +7,46 @@ using AT_Core.Models;
 using AT_Core.Models.Entity;
 using AT_Core.Models.ViewModels;
 using AT_Core.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AT_Core.Controllers
 {
     public class DepartController : ATControllerBase
     {
-        public DepartController(ATDbContext context) : base(context)
+        public DepartController(ATDbContext dbContext, IHttpContextAccessor accessor) 
+            : base(dbContext, accessor)
         {
         }
 
-        [HttpPost]
-        public ResultWrapper<IList<Department>> GetDepratments()
+        [HttpGet]
+        public IList<DepartmentOutput> GetDepratments()
         {
-            return new ResultWrapper<IList<Department>>(context.Departments.Where(n => n.IsDisable == false).ToList());
-        }
-
-        [HttpPost]
-        public ResultWrapper<bool> AddDepratment(DepartmentModel departModel)
-        {
-            if (!string.IsNullOrWhiteSpace(departModel.DepartName))
+            var departList = DBContext.Departments.Where(z => z.IsDisable == false).Select(z => new DepartmentOutput()
             {
-                var count = context.Departments.Count(n => n.DepartName.Equals(departModel.DepartName.Trim()));
+                DepartId = z.Id,
+                DepartName = z.DepartName
+            }).ToList();
+            return new List<DepartmentOutput>(departList);
+        }
+
+        [HttpPost]
+        public bool AddDepratment([FromBody]string departName)
+        {
+            if (!string.IsNullOrWhiteSpace(departName))
+            {
+                var count = DBContext.Departments.Count(n => n.DepartName.Equals(departName.Trim()));
                 if (count > 0)
                 {
-                    throw new ATException(ATEnums.ErrCode.ObjectIsExist, string.Format("{0} has exsited",departModel.DepartName));
+                    throw new ATException(ATEnums.ErrCode.ObjectIsExist, string.Format("{0} has exsited", departName));
                 }
                 var depart = new Department();
-                depart.DepartName = departModel.DepartName;
+                depart.DepartName = departName;
 
-                context.Departments.Add(depart);
-                context.SaveChanges();
+                DBContext.Departments.Add(depart);
+                DBContext.SaveChanges();
 
-                return new ResultWrapper<bool>(true);
+                return true;
             }
             else
                 throw new ATException(ATEnums.ErrCode.InvaildInput, "departName is invaild");

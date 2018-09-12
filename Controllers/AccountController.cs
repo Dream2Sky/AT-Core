@@ -16,41 +16,43 @@ namespace AT_Core.Controllers
 {
     public class AccountController : ATControllerBase
     {
-        public AccountController(ATDbContext context) : base(context)
+        public AccountController(ATDbContext dbContext, IHttpContextAccessor accessor) : 
+            base(dbContext, accessor)
         {
-            if (!context.Users.Any())
-            {
-                context.Users.Add(new User() { UserName = "Admin", Password = EncryptUtils.GetMD5("888888"), IsAdmin = true });
-                context.SaveChanges();
-            }
         }
 
         [HttpPost]
         [NoAuth]
-        public ResultWrapper<LoginResult> Login(LoginModel loginModel)
+        public LoginOutput Login(LoginInput loginInput)
         {
-            var user = context.Users.FirstOrDefault(n => n.UserName.Equals(loginModel.UserName) && n.IsDisable == false);
+            var user = DBContext.Users.FirstOrDefault(n => n.UserName.Equals(loginInput.UserName) && n.IsDisable == false);
             if (user == null)
                 throw new ATException(ATEnums.ErrCode.LoginFaild, "User not found!");
-            if (!user.Password.Equals(EncryptUtils.GetMD5(loginModel.Password)))
+            if (!user.Password.Equals(EncryptUtils.GetMD5(loginInput.Password)))
                 throw new ATException(ATEnums.ErrCode.LoginFaild, "Password is invaild");
 
-            HttpContext.Session.SetString(ATConst.AuthUserSessionKey, JsonConvert.SerializeObject(user));
+            context.SetCurrentUser(user);
             logger.Info(user.UserName + " loging");
-            return new ResultWrapper<LoginResult>(new LoginResult() { UserId = user.Id, UserName = user.UserName, IsAdmin = user.IsAdmin, LoginState = true });
+            return new LoginOutput()
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                IsAdmin = user.IsAdmin,
+                LoginState = true,
+                DepartId = user.DepartmentId
+            };
         }
 
         [HttpPost]
         [NoAuth]
-        public ResultWrapper<bool> Logout()
+        public bool Logout()
         {
-            if (!string.IsNullOrWhiteSpace(HttpContext.Session.GetString(ATConst.AuthUserSessionKey)))
-                HttpContext.Session.Remove(ATConst.AuthUserSessionKey);
-            return new ResultWrapper<bool>(true);
+            context.ReleaseCurrentUser();
+            return true;
         }
 
         [HttpGet]
-        public ResultWrapper<string> GetCurrentUser()
+        public string GetCurrentUser()
         {
             var userName = "I don't know";
             if (!string.IsNullOrWhiteSpace(HttpContext.Session.GetString(ATConst.AuthUserSessionKey)))
@@ -59,7 +61,14 @@ namespace AT_Core.Controllers
                 userName = currentUser.UserName;
             }
 
-            return new ResultWrapper<string>(userName);
+            return userName;
+        }
+
+        public bool UpdateUser()
+        {
+            // TODO:
+            // update user info, user.name or user.password??
+            return false;
         }
     }
 }

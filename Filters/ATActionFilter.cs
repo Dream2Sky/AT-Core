@@ -10,18 +10,20 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AT_Core.Filters
 {
-    public class ATActionFilter :Attribute, IActionFilter
-    {
+    public class ATActionFilter : Attribute, IActionFilter
+    {   
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            var objResult = context.Result as ObjectResult;
+            context.Result = new JsonResult(new ResultWrapper<object>(objResult.Value));
             return;
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            if(context.ModelState.IsValid) return;
+            if (context.ModelState.IsValid) return;
 
-            var modelState = context.ModelState.FirstOrDefault(n=>n.Value.Errors.Any());
+            var modelState = context.ModelState.FirstOrDefault(n => n.Value.Errors.Any());
             var errorMsg = modelState.Value.Errors.First().ErrorMessage;
             throw new ATException(ATEnums.ErrCode.InvaildInput, "inputed data is invaild");
         }

@@ -12,5 +12,6 @@ namespace AT_Core.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<App> Apps { get; set; }
     }
 }

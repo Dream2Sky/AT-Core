@@ -1,17 +1,17 @@
-1. ef for mysql
-2. account system(role)
-3. basic auth system
-4. exception system
-5. result data struct
-6. multi lib
+asp.net core webapi post complex obj
+
+content-type:application/json
+postman:raw 
+data:
+    {
+        "Id":132,
+        "Name":"sdkfdk"
+    }
 
 
+asp.net core webapi post simple type data
 
-
-==============================
-
-
-webapi
-    AccountController
-    CaseController
-    
+content-type:application/json
+postman:raw
+data:
+    "hehe"
